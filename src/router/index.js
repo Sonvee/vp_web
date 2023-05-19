@@ -1,8 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
- 
-// 路由懒加载
-const Index = () => import('../views/index.vue')
- 
+
 // 路由规则
 const routes = [
   {
@@ -12,15 +9,28 @@ const routes = [
   },
   {
     path: '/index',
-    name: 'index',
-    component: Index
-  }
+    name: '首页',
+    component: () => import('../views/index.vue'), // 路由懒加载
+    meta: { transition: 'slide-left' },
+  },
+  {
+    path: '/recommend',
+    name: '推荐',
+    component: () => import('../views/recommend.vue'), // 路由懒加载
+    meta: { transition: 'slide-left' },
+  },
+  {
+    path: '/mine',
+    name: '我的',
+    component: () => import('../views/mine.vue'), // 路由懒加载
+    meta: { transition: 'slide-left' },
+  },
 ]
- 
+
 // 创建路由
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
- 
+
 export default router

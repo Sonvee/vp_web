@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <MuiPlayer :url="video.playUrl"></MuiPlayer>
+  <div v-for="(item, index) in videoList" :key="index">
+    <TcPlayer :url="item.playurl" :id="index"></TcPlayer>
   </div>
 </template>
 
 <script setup>
-import { MuiPlayer } from '@/components'
-import { getSentences, getVideo } from '@/api/open.js'
+import { TcPlayer } from '../components'
+import { getMiniVideo } from '@/api/open.js'
 import { ref } from 'vue';
 
-const video = ref('')
+const videoList = ref([])
+
 initVideo()
 function initVideo() {
-  getVideo().then(res => {
-    video.value = res.result?.list[0]
-    console.log('视频列表--->', video.value);
+  getMiniVideo().then(res => {
+    videoList.value = res.result?.list
+    console.log('视频列表--->', videoList.value);
   })
 }
 </script>

@@ -1,5 +1,5 @@
-import MuiPlayer from './MuiPlayer/MuiPlayer.vue'
+import TcPlayer from './TcPlayer/TcPlayer.vue'
 
 export {
-  MuiPlayer
+  TcPlayer
 }

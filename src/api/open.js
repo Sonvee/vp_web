@@ -9,13 +9,26 @@ export function getSentences(params) {
 }
 
 /**
- * 获取好看视频
+ * 获取短视频
  * @param {*} params {page: 页码, size: 总数 id}
  * @returns 
  */
-export function getVideo(params) {
+export function getMiniVideo(params) {
   return request({
-    url: '/getHaoKanVideo',
+    url: '/getMiniVideo',
+    method: 'get',
+    params: params
+  })
+}
+
+/**
+ * 获取短视频
+ * @param {*} params {page: 页码, size: 总数 id}
+ * @returns 
+ */
+export function getShortVideo(params) {
+  return request({
+    url: '/getShortVideo',
     method: 'get',
     params: params
   })

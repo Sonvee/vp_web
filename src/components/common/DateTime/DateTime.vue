@@ -7,6 +7,7 @@
 <script setup>
 import { onActivated, onDeactivated, onMounted, ref } from 'vue';
 import dayjs from 'dayjs';
+import { onUnmounted } from 'vue';
 
 const props = defineProps({
   format: {
@@ -31,6 +32,14 @@ function clearDateTimer() {
   }
 }
 
+onMounted(() => {
+  createDateTimer()
+})
+
+onUnmounted(() => {
+  clearDateTimer()
+})
+
 onActivated(() => {
   createDateTimer()
 })
@@ -41,4 +50,4 @@ onDeactivated(() => {
 
 </script>
 
-<style lang="less" scoped></style>
+<style lang="scss" scoped></style>

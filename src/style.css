@@ -9,3 +9,22 @@ body,
 #app {
   height: 100%;
 }
+
+.vh-center {
+  /* 水平垂直居中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.v-center {
+  /* 垂直居中 */
+  display: flex;
+  align-items: center;
+}
+
+.h-center {
+  /* 水平居中 */
+  display: flex;
+  justify-content: center;
+}

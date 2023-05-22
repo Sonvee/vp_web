@@ -22,7 +22,7 @@ function changeNav(e) {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .nav-bar-component {
   width: 100%;
   height: 100%;

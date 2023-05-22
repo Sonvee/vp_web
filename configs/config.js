@@ -1,10 +1,10 @@
-const baseurl = 'https://api.apiopen.top'
+const rootUrl = 'https://api.apiopen.top'
 
 const configs = {
   title: 'demo',
   description: 'demo',
-  baseUrl: baseurl,
-  apiUrl: `${baseurl}/api`
+  baseUrl: rootUrl,
+  apiUrl: `${rootUrl}/api`
 }
 
 export { configs }

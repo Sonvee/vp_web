@@ -1,6 +1,7 @@
 <template>
   <div class="header-bar">
-    <HeaderBar></HeaderBar>
+    <HeaderBar :title="route.name">
+    </HeaderBar>
   </div>
   <div class="main">
     <router-view v-slot="{ Component }">
@@ -22,21 +23,25 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
+
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+$header-bar-height: 40px;
+$nav-bar-height: 50px;
+
 .header-bar {
   width: 100vw;
-  height: 50px;
+  height: $header-bar-height;
 }
 
 .main {
   width: 100vw;
-  height: calc(100vh - 50px - 50px);
+  height: calc(100vh - $header-bar-height - $nav-bar-height);
 }
 
 .nav-bar {
   width: 100vw;
-  height: 50px;
+  height: $nav-bar-height;
 }
 </style>

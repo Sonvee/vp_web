@@ -1,5 +1,5 @@
 <template>
-  <div class="header-bar-component v-center">
+  <div class="header-bar-component v-center" :style="{ background: background }">
     <div class="icon vh-center" @click="onIcon">
       <slot name="icon-slot">
         <van-icon name="arrow-left" @click="onBack" />
@@ -19,8 +19,14 @@ import { DateTime } from '@/components'
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
-  title: String,
-  default: '标题'
+  title: {
+    type: String,
+    default: '标题'
+  },
+  background: {
+    type: String,
+    default: '#fff'
+  }
 })
 
 const emits = defineEmits(['onIcon'])

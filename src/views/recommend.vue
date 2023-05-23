@@ -3,13 +3,11 @@
     <van-swipe class="player-box" vertical :show-indicators="false" :loop="false" @change="changeSwipe"
       @drag-start="dragStart" @drag-end="dragEnd">
       <van-swipe-item v-for="(item, index) in videoList" :key="index">
-        <TcPlayer :url="item.playurl" :active="currentVideo == index ? true : false"></TcPlayer>
+        <XgPlayer :url="item.playurl" :active="currentVideo == index ? true : false" controlsBottom="5.125rem"></XgPlayer>
         <div class="info">
           <div class="info-title">{{ item.title }}</div>
           <div class="info-user">
-            <div class="user-avatar">
-              <img :src="item.picuser" alt="">
-            </div>
+            <van-image round width="2.5rem" height="2.5rem" :src="item.picuser" />
             <div class="user-name">
               {{ item.alias }}
             </div>
@@ -21,8 +19,8 @@
 </template>
 
 <script setup>
-import { TcPlayer } from '@/components'
-import { getHaoKanVideo, getMiniVideo, getShortVideo } from '@/api/open.js'
+import { XgPlayer } from '@/components'
+import { getMiniVideo } from '@/api/open.js'
 import { ref } from 'vue';
 
 const videoList = ref([])
@@ -80,26 +78,16 @@ function dragEnd(e) {
 
       .info-title {
         margin-bottom: 0.75rem;
+        font-weight: 700;
       }
 
       .info-user {
         display: flex;
         align-items: center;
 
-        .user-avatar {
-          width: 2.5rem;
-          height: 2.5rem;
-          border-radius: 1.25rem;
-          overflow: hidden;
-
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-
         .user-name {
           margin-left: 0.75rem;
+          font-size: 0.875rem;
         }
       }
     }

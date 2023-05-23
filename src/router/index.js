@@ -11,19 +11,16 @@ const routes = [
     path: '/index',
     name: '首页',
     component: () => import('../views/index.vue'), // 路由懒加载
-    meta: { transition: 'slide-left' },
   },
   {
     path: '/recommend',
     name: '推荐',
     component: () => import('../views/recommend.vue'), // 路由懒加载
-    meta: { transition: 'slide-left' },
   },
   {
     path: '/mine',
     name: '我的',
     component: () => import('../views/mine.vue'), // 路由懒加载
-    meta: { transition: 'slide-left' },
   },
 ]
 

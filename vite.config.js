@@ -46,6 +46,16 @@ export default defineConfig({
       '@configs': resolve(__dirname, './configs')
     }
   },
+  /* css: {
+    // css预处理
+    preprocessorOptions: {
+      // 全局样式引入
+      scss: {
+        additionalData: '@import "./src/style.scss";',
+        javascriptEnabled: true
+      }
+    }
+  }, */
   server: {
     port: 8090,
     proxy: {
@@ -55,5 +65,5 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
-  }
+  },
 })

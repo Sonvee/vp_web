@@ -77,10 +77,10 @@ function onScroll(e) {
   const { height: indexHeight } = useElementBounding(indexRef)
   if (e.y.value >= listHeight.value - indexHeight.value -  20) {
     isLoadmore.value = true
-    console.log('滚动距离顶部高度', e.y.value, '阈值', listHeight.value - indexHeight.value - 40, '加载更多', isLoadmore.value)
   } else {
     isLoadmore.value = false
   }
+  // console.log('滚动距离顶部高度', e.y.value, '阈值', listHeight.value - indexHeight.value - 40, '加载更多', isLoadmore.value)
 }
 
 watch(isLoadmore, (newVal) => {

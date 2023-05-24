@@ -10,6 +10,7 @@ pnpm run dev
 ```
 axios
 vueuse
+vue-router
 lodash
 vant
 xgplayer

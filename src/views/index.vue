@@ -1,5 +1,5 @@
 <template>
-  <div class="index-container" v-scroll="onScroll">
+  <div class="index-container" ref="indexRef" v-scroll="onScroll">
     <van-pull-refresh v-model="isLoading" success-text="刷新成功" @refresh="onRefresh">
       <div class="list" :key="listKey" ref="listRef">
         <div class="list-item" v-for="(item, index) in videoList" :key="index" @click="onVideo(index)">
@@ -16,7 +16,9 @@
         </div>
       </div>
     </van-pull-refresh>
-    <van-back-top />
+    <div class="loadmore" v-if="isLoadmore">
+      <van-loading size="1rem">加载中...</van-loading>
+    </div>
   </div>
 </template>
 
@@ -28,10 +30,12 @@ import { vScroll } from '@vueuse/components'
 import { useElementBounding } from '@vueuse/core'
 
 const isLoading = ref(false);
+const isLoadmore = ref(false);
 const videoList = ref([])
 const currentVideo = ref(0)
 const listKey = ref(0)
 const listRef = ref()
+const indexRef = ref()
 
 init()
 function init() {
@@ -40,7 +44,7 @@ function init() {
 
 function getVideo() {
   getHaoKanVideo({
-    size: 12
+    size: 4
   }).then(res => {
     let vlist = res.result?.list || []
     videoList.value?.push(...vlist)
@@ -56,7 +60,7 @@ function onVideo(e) {
 function onRefresh() {
   isLoading.value = true;
   getHaoKanVideo({
-    size: 12
+    size: 4
   }).then(res => {
     let vlist = res.result?.list || []
     videoList.value = vlist
@@ -68,10 +72,23 @@ function onRefresh() {
 }
 
 function onScroll(e) {
-  const { height } = useElementBounding(listRef)
-  let listHeight = height.value - 860
-  console.log(listHeight, e.y.value) // {x, y, isScrolling, arrivedState, directions}
+  // e: {x, y, isScrolling, arrivedState, directions}
+  const { height: listHeight } = useElementBounding(listRef)
+  const { height: indexHeight } = useElementBounding(indexRef)
+  if (e.y.value >= listHeight.value - indexHeight.value -  20) {
+    isLoadmore.value = true
+    console.log('滚动距离顶部高度', e.y.value, '阈值', listHeight.value - indexHeight.value - 40, '加载更多', isLoadmore.value)
+  } else {
+    isLoadmore.value = false
+  }
 }
+
+watch(isLoadmore, (newVal) => {
+  // 监听 懒加载
+  if (newVal) {
+    getVideo()
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -119,5 +136,11 @@ function onScroll(e) {
     }
   }
 
+  .loadmore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+  }
 }
 </style>
